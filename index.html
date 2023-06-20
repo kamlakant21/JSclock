@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JS Clock</title>
+    <style>
+      /* CSS styling for the clock */
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        background-image: url(/R.jpeg);
+        background-size: cover;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      h1 {
+        text-align: center;
+        color: #f2e3db;
+        margin: 1rem;
+        font-size: large;
+      }
+      hr {
+        width: 80%;
+        margin: 1rem auto;
+      }
+      .clock {
+        border: 20px solid #088395;
+        border-radius: 50%;
+        margin: 1rem auto;
+        height: 500px;
+        width: 500px;
+        padding: 2rem;
+        display: inline-block;
+        padding: 20px;
+        position: relative;
+        transform-origin: 100%;
+      }
+      .sec {
+        height: 250px;
+        width: 10px;
+        border-radius: 10px;
+        line-height: 45px;
+        position: relative;
+        left: 245px;
+        background: radial-gradient(#0a4d68, #eeebdd);
+        z-index: 3;
+        transform-origin: bottom;
+        animation: rotateSeconds 60s linear infinite; /* CSS animation for smooth rotation */
+      }
+      .min {
+        height: 250px;
+        width: 15px;
+        border-radius: 10px;
+        line-height: 45px;
+        position: relative;
+        left: 245.5px;
+        background: radial-gradient(#0a4d68, #eeebdd);
+        top: -250px;
+        z-index: 2;
+        transform-origin: bottom;
+      }
+      .hour {
+        height: 180px;
+        width: 20px;
+        border-radius: 10px;
+        line-height: 45px;
+        position: relative;
+        left: 240px;
+        background: radial-gradient(#0a4d68, #eeebdd);
+        top: -430px;
+        z-index: 1;
+        transform-origin: bottom;
+      }
+      .sec,
+      .min,
+      .hour {
+        transition: 0.0001s;
+      }
+      .one,
+      .two,
+      .three,
+      .four,
+      .five,
+      .six,
+      .seven,
+      .eight,
+      .nine,
+      .ten,
+      .eleven,
+      .twelve {
+        font-size: 3.7em;
+        font-family: "Times New Roman", Times, serif;
+        color: #00ffca;
+        position: relative;
+        z-index: 0;
+      }
+      .one {
+        top: -649px;
+        left: 103px;
+      }
+      .two {
+        top: -640px;
+        left: 182px;
+      }
+      .three {
+        top: -603px;
+        left: 228px;
+      }
+      .four {
+        top: -564px;
+        left: 183px;
+      }
+      .five {
+        top: -561px;
+        left: 106px;
+      }
+      .six {
+        top: -590px;
+      }
+      .seven {
+        top: -701px;
+        left: -106px;
+      }
+      .eight {
+        top: -840px;
+        left: -183px;
+      }
+      .nine {
+        top: -1016px;
+        left: -228px;
+      }
+      .ten {
+        top: -1191px;
+        left: -182px;
+      }
+      .eleven {
+        top: -1338px;
+        left: -103px;
+      }
+      .twelve {
+        top: -1440px;
+      }
+
+      /* CSS animation for smooth rotation of the second hand */
+      @keyframes rotateSeconds {
+        0% {
+          transform: rotate(90deg); /* Start position */
+        }
+        100% {
+          transform: rotate(450deg); /* End position after 60 seconds */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Clock Using Javascript and CSS</h1>
+    <hr />
+    <div class="clock">
+      <div class="sec">s</div>
+      <!-- Second hand -->
+      <div class="min">m</div>
+      <!-- Minute hand -->
+      <div class="hour">h</div>
+      <!-- Hour hand -->
+      <div class="one">1</div>
+      <div class="two">2</div>
+      <div class="three">3</div>
+      <div class="four">4</div>
+      <div class="five">5</div>
+      <div class="six">6</div>
+      <div class="seven">7</div>
+      <div class="eight">8</div>
+      <div class="nine">9</div>
+      <div class="ten">10</div>
+      <div class="eleven">11</div>
+      <div class="twelve">12</div>
+    </div>
+    <script>
+      // JavaScript code for updating the clock hands
+      const secondHand = document.querySelector(".sec");
+      const minHand = document.querySelector(".min");
+      const hourHand = document.querySelector(".hour");
+
+      function setClock() {
+        const now = new Date();
+
+        const seconds = now.getSeconds();
+        const secondDegrees = (seconds / 60) * 360 + 90;
+        secondHand.style.transform = `rotate(${secondDegrees}deg)`; // Rotate the second hand based on the current second
+
+        const minutes = now.getMinutes();
+        const minuteDegrees = (minutes / 60) * 360;
+        minHand.style.transform = `rotate(${minuteDegrees}deg)`; // Rotate the minute hand based on the current minute
+
+        const hours = now.getHours();
+        const hourDegrees = (hours / 12) * 360;
+        hourHand.style.transform = `rotate(${hourDegrees}deg)`; // Rotate the hour hand based on the current hour
+      }
+      setInterval(setClock, 1000); // Update the clock every second
+      setClock(); // Initial clock setup
+    </script>
+  </body>
+</html>
